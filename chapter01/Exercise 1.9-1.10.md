@@ -67,7 +67,7 @@ A(0 A(0 A(1 n-2)))
 A(0 A(0 A(0 ...A(1 1))))
 ```
 With the definition of A,we can conclude that the mathematical
-definition is 2^n.(2*2*2...*2)
+definition is 2^n.(2 * 2 * 2...*2)
 For the last one,if we expand  the procedure similarly and get
 something like:
 ```
