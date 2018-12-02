@@ -25,7 +25,7 @@ If the interpreter is using normal-order evaluation
 in above condition,only 0 will be evaluated,so the
 result will be 0.	 
 ***
-# Exercise1.6
+# Exercise 1.6
 ```
 (define (new-if predicate then-clause else-clause)
 	(cond (predicate then-clause)
@@ -40,3 +40,25 @@ to the rules of interpreter using applicative-order evaluation
 ,no matter the value of predicate is true or false,both then-
 clause and else-clause will be evaluated,which will make sqrt-iter
 execute infinitely.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
