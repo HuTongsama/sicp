@@ -1,0 +1,22 @@
+#lang sicp
+(define (f-recursive n)
+  (cond ((< n 3) n)
+        (else (+
+               (f-recursive (- n 1))
+               (* 2 (f-recursive (- n 2)))
+               (* 3 (f-recursive (- n 3)))))))
+(define (iter a b c n)
+  (if (< 2 n)
+      (iter b c (+
+                 (* 3 a)
+                 (* 2 b)
+                 c)
+            (dec n))
+      c))
+(define (f-iterative n)
+  (cond ((= n 0) 0)
+        ((= n 1) 1)
+        ((= n 2) 2)
+        (else (iter 0 1 2 n))))
+(f-iterative 30)
+(f-recursive 30)
