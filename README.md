@@ -1,1 +1,1 @@
-# Some Thing about sicp
+# Something about sicp
