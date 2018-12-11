@@ -1,0 +1,20 @@
+#lang sicp
+
+(define (double x)
+  (+ x x))
+(define (halve x)
+  (/ x 2))
+(define (mul-iterative a b)
+  (mul-iter a b 0))
+(define (mul-iter a b c)
+  (cond ((= b 0) c)
+        ((even? b) (mul-iter (double a)
+                             (halve b)
+                             c))
+        ((odd? b) (mul-iter a
+                            (- b 1)
+                            (+ a c)))))
+(mul-iterative 1 2)
+(mul-iterative 2 3)
+(mul-iterative 5 6)
+(mul-iterative 256 125)
