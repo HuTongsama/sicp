@@ -6,10 +6,14 @@
 (define (find-divisor n test-divisor)
   (cond ((> (square test-divisor) n) n)
         ((divides? test-divisor n) test-divisor)
-        (else (find-divisor n (+ 1 test-divisor)))))
+        (else (find-divisor n (next test-divisor)))))
 (define (divides? a b) (= (remainder b a) 0))
 (define (square x)
   (* x x))
+(define (next n)
+  (if (= n 2)
+      3
+      (+ n 2)))
 (define (timed-prime-test n)
   (start-prime-test n (current-inexact-milliseconds)))
 (define (start-prime-test n start-time)
@@ -31,3 +35,6 @@
   (if (even? n)
       (+ n 1)
       (+ n 2)))
+;the time cost is not exactly reduce a half,maybe procedure
+;(next n) has some cost
+(search-for-primes 100000000000 3)
