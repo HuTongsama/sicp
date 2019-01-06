@@ -1,0 +1,43 @@
+#lang sicp
+(define (product func a next b)
+  (if (> a b)
+      1
+      (* (func a) (product func (next a) next b))))
+(define (product-iter func a next b)
+  (define (iter a result)
+    (if (> a b)
+        result
+        (iter (next a) (* result (func a)))))
+  (iter a 1))
+(define (factorial x)
+  (define (identity x) x)
+  (define (next x) (+ x 1))
+  (product identity 1 next x))
+(define (approx-pi x)
+  (define (func x)
+    (* x x))
+  (define (next x)
+    (+ x 2))  
+  (if (even? x)
+      (exact->inexact
+       (/ (* 2 (product func 4 next x))
+          (* (+ x 1) (product func 3 next (- x 1)))))
+      (exact->inexact
+       (/ (* 2 (product func 4 (- x 1)))
+         (* x (product func 3 next (- x 2)))))))
+(define (approx-pi-iter x)
+  (define (func x)
+    (* x x))
+  (define (next x)
+    (+ x 2))  
+  (if (even? x)
+      (exact->inexact
+       (/ (* 2 (product-iter func 4 next x))
+          (* (+ x 1) (product-iter func 3 next (- x 1)))))
+      (exact->inexact
+       (/ (* 2 (product-iter func 4 (- x 1)))
+         (* x (product-iter func 3 next (- x 2)))))))
+(approx-pi 100)
+(approx-pi 1000)
+(approx-pi-iter 100)
+(approx-pi-iter 1000)
