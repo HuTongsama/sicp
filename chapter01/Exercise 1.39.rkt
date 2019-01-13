@@ -1,0 +1,20 @@
+#lang sicp
+(define (cont-frac n d k)
+  (define (next x)
+    (if (> x k)
+        (/ (n x) (d x))
+        (/ (n x)
+           (+ (d x) (next (+ x 1))))))
+  (next 1))
+
+(define (tan-cf x k)
+  (define (N k)
+    (if (= 1.0 k)
+        x
+        (- 0.0 (* x x))))
+  (define (D k)
+    (- (* 2.0 k)
+       1.0))
+  (cont-frac N D k))
+(tan-cf 0.785 100)
+(tan 0.785)
