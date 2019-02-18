@@ -1,0 +1,37 @@
+#lang sicp
+(define (make-segment start end)
+  (cons start end))
+(define (start-segment line)
+  (car line))
+(define (end-segment line)
+  (cdr line))
+(define (make-point x y)
+  (cons x y))
+(define (x-point point)
+  (car point))
+(define (y-point point)
+  (cdr point))
+
+(define (perimeter rect)
+  (* 2 (+ (length rect)
+          (width rect))))
+(define (area rect)
+  (* (length rect)
+     (width rect)))
+(define (make-rect leftTopPoint rightBottomPoint)
+  (cons leftTopPoint rightBottomPoint))
+(define (length rect)
+  (- (x-point (cdr rect))
+   (x-point (car rect))))
+(define (width rect)
+  (- (y-point (car rect))
+     (y-point (cdr rect))))
+;if change the implement of rectangle
+;,as long as we implement the selectors
+;,such as length and width ,the same
+;perimeter and area procedures will still work.
+(define leftTop (make-point 0 5))
+(define rightBottom (make-point 5 1))
+(define rect (make-rect leftTop rightBottom))
+(perimeter rect)
+(area rect)
