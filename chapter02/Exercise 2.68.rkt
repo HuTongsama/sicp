@@ -1,4 +1,4 @@
-#lang sicp
+#lang racket
 (define (make-leaf symbol weight) (list 'leaf symbol weight))
 (define (leaf? object) (eq? (car object) 'leaf))
 (define (symbol-leaf x) (cadr x))
@@ -30,12 +30,27 @@
               (encode (cdr message) tree))))
 (define (encode-symbol symbol tree)
   (define (iter symbol tree)
-    (cond ((element-of-set? symbol (left-branch tree))
+    (cond ((leaf? tree) '())
+          ((element-of-set? symbol (symbols (left-branch tree)))
           (cons '0 (iter symbol (left-branch tree))))
-          ((element-of-set? symbol (right-branch tree))
-           (cons '1 (iter symbol right-branch tree)))
+          ((element-of-set? symbol (symbols (right-branch tree)))
+           (cons '1 (iter symbol (right-branch tree))))
           (else '())))
   (if (not (element-of-set? symbol (symbols tree)))
       (error "error symbol")
       (iter symbol tree)))
+(define sample-tree
+  (make-code-tree (make-leaf 'A 4)
+                  (make-code-tree
+                   (make-leaf 'B 2)
+                   (make-code-tree
+                    (make-leaf 'D 1)
+                    (make-leaf 'C 1))))
+  )
+(define sample-message '(A D A B B C A))
+(define test-tree '((leaf A 4) ((leaf B 2) ((leaf D 1) (leaf C 1) (D C) 2) (B D C) 4) (A B D C) 8))
+(encode sample-message test-tree)
+(encode sample-message sample-tree)
+
+
 
