@@ -1,5 +1,4 @@
 #lang sicp
-(provide (all-defined-out))
 (define (make-leaf symbol weight) (list 'leaf symbol weight))
 (define (leaf? object) (eq? (car object) 'leaf))
 (define (symbol-leaf x) (cadr x))
@@ -41,3 +40,4 @@
                 (let ((sub-set (adjoin-set sub-tree (cddr leaf-set))))
                   (successive-merge sub-set))))))
 (generate-huffman-tree '((A 4) (B 2) (C 1) (D 1)))
+(generate-huffman-tree '((BOOM 1) (WAH 1) (A 2) (GET 2) (JOB 2) (SHA 3) (NA 16) (YIP 9)))
