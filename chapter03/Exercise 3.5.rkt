@@ -32,8 +32,8 @@
         (y (random-in-range (min y1 y2) (max y1 y2)))
         (center (cons (/ (+ x1 x2) 2) (/ (+ y1 y2) 2)))
         (radius (min (/ (abs (- x1 x2)) 2) (/ (abs (- y1 y2)) 2))))
-    (< (+ (- (square (car center)) (square x))
-          (- (square (cdr center)) (square y)))
+    (< (+ (square (- x (car center)))
+          (square (- y (cdr center))))
        (square radius))))
 
-(estimate-integral is-in-region? 2 4 8 10 10000)
+(estimate-integral is-in-region? 2.0 4.0 8.0 10.0 10000)

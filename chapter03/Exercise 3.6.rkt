@@ -1,0 +1,17 @@
+#lang sicp
+  (define (rand-update x)
+    (modulo (* (+ (* 21 x) 1) 18) 64))
+(define rand
+  (let ((init 0))
+    (lambda (x)
+    (cond ((eq? x 'generate) (begin (set! init (rand-update init))
+                                    init))
+        ((eq? x 'reset) (lambda (value) (set! init value))))))
+  )
+(rand 'generate)
+(rand 'generate)
+(rand 'generate)
+((rand 'reset) 10)
+(rand 'generate)
+(rand 'generate)
+(rand 'generate)
