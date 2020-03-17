@@ -1,3 +1,4 @@
 #lang sicp
-(define (partial-sums s)
-  (add=streams s (cons-stream 0 (partial-sums s))))
+(define (partial-sum s)
+  (define ps (add-streams s (stream-cons 0 ps)))
+  ps)
