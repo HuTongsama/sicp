@@ -136,10 +136,33 @@
      (scale-stream (mul-series series
                                (stream-cdr s)) -1)))
   series)
+(define (average a b)
+  (/ (+ a b) 2))
+(define (sqrt-improve guess x)
+  (average guess (/ x guess)))
+(define (sqrt-stream x)
+  (define guesses
+    (stream-cons
+     1.0
+     (stream-map (lambda (guess)
+                   (sqrt-improve guess x))
+                 guesses)))
+  guesses)
+(define (partial-sum s)
+  (define ps (add-streams s (stream-cons 0 ps)))
+  ps)
 
+(define (pi-summands n)
+  (stream-cons (/ 1.0 n)
+               (stream-map - (pi-summands (+ n 2)))))
+(define pi-stream
+  (scale-stream (partial-sum (pi-summands 1)) 4))
 
-
-
+(define (ln2-summands n)
+  (stream-cons (/ 1.0 n)
+               (stream-map - (ln2-summands (+ n 1)))))
+(define ln2-stream
+  (partial-sum (ln2-summands 1)))
 
 
 
