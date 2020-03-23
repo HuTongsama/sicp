@@ -1,0 +1,11 @@
+#lang racket
+(define (triples s t u)
+  (let ((pair (pairs s t)))
+   (pairs (pair u))))
+(define (phythagorean-numbers)
+  (define (square x) (* x x))
+  (define numbers (triples integers integers integers))
+  (stream-filter (lambda (x)
+                   (= (square (caddr x))
+                      (+ (square (car x)) (square (cadr x)))))
+                 numbers))
